@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>vue源码 | 汪涵的博客</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link>
+    <meta name="description" content="">
+    <link rel="preload" href="/assets/css/0.styles.98136e72.css" as="style"><link rel="preload" href="/assets/js/app.df490d21.js" as="script"><link rel="preload" href="/assets/js/2.9235f093.js" as="script"><link rel="preload" href="/assets/js/28.5b4073a9.js" as="script"><link rel="prefetch" href="/assets/js/10.92f448a7.js"><link rel="prefetch" href="/assets/js/11.d81451ab.js"><link rel="prefetch" href="/assets/js/12.fe657e2d.js"><link rel="prefetch" href="/assets/js/13.673f55af.js"><link rel="prefetch" href="/assets/js/14.33419792.js"><link rel="prefetch" href="/assets/js/15.ab408685.js"><link rel="prefetch" href="/assets/js/16.41231623.js"><link rel="prefetch" href="/assets/js/17.f98cb10c.js"><link rel="prefetch" href="/assets/js/18.dc28497a.js"><link rel="prefetch" href="/assets/js/19.3bd23e42.js"><link rel="prefetch" href="/assets/js/20.48e0bcc4.js"><link rel="prefetch" href="/assets/js/21.4ca137be.js"><link rel="prefetch" href="/assets/js/22.fe35d04c.js"><link rel="prefetch" href="/assets/js/23.e2151993.js"><link rel="prefetch" href="/assets/js/24.42cdd1be.js"><link rel="prefetch" href="/assets/js/25.2ef590fe.js"><link rel="prefetch" href="/assets/js/26.88fd7535.js"><link rel="prefetch" href="/assets/js/27.aefa961a.js"><link rel="prefetch" href="/assets/js/29.4c27b4b2.js"><link rel="prefetch" href="/assets/js/3.74014b60.js"><link rel="prefetch" href="/assets/js/30.f97becd7.js"><link rel="prefetch" href="/assets/js/31.92fc7f70.js"><link rel="prefetch" href="/assets/js/32.d7c4f275.js"><link rel="prefetch" href="/assets/js/33.8d2027ca.js"><link rel="prefetch" href="/assets/js/34.adb9aee5.js"><link rel="prefetch" href="/assets/js/35.34cb4c23.js"><link rel="prefetch" href="/assets/js/4.ddf5fb83.js"><link rel="prefetch" href="/assets/js/5.2f6ceb2d.js"><link rel="prefetch" href="/assets/js/6.acebe267.js"><link rel="prefetch" href="/assets/js/7.4f5a488b.js"><link rel="prefetch" href="/assets/js/8.d3b85309.js"><link rel="prefetch" href="/assets/js/9.395837cf.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.98136e72.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">汪涵的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>计算机网络</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>Vue</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/vueDoc/route.html" class="sidebar-link">路由</a></li><li><a href="/vueDoc/vue.html" aria-current="page" class="active sidebar-link">vue源码</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/vueDoc/vue.html#源码目录及准备工作" class="sidebar-link">源码目录及准备工作</a></li><li class="sidebar-sub-header"><a href="/vueDoc/vue.html#数据驱动" class="sidebar-link">数据驱动</a></li><li class="sidebar-sub-header"><a href="/vueDoc/vue.html#组件化" class="sidebar-link">组件化</a></li><li class="sidebar-sub-header"><a href="/vueDoc/vue.html#深入响应式原理" class="sidebar-link">深入响应式原理</a></li></ul></li><li><a href="/vueDoc/vueRouter.html" class="sidebar-link">router</a></li><li><a href="/vueDoc/bindData.html" class="sidebar-link">vue双向绑定</a></li></ul></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>webpack</span> <span class="arrow right"></span></p> <!----></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="vue源码"><a href="#vue源码" class="header-anchor">#</a> vue源码</h1> <h2 id="源码目录及准备工作"><a href="#源码目录及准备工作" class="header-anchor">#</a> 源码目录及准备工作</h2> <p>直接看链接
+<a href="https://ustbhuangyi.github.io/vue-analysis/v2/prepare/" target="_blank" rel="noopener noreferrer">Vue.js 技术揭秘/准备工作<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <h3 id="源码断点调试"><a href="#源码断点调试" class="header-anchor">#</a> 源码断点调试</h3> <p>调试是在使用vue的项目里，不是在vue的源码项目中。</p> <p>在项目中引入vue</p> <div class="language- extra-class"><pre class="language-text"><code>import Vue from 'vue'
+var app=new Vue({
+    el:'#app',
+    data:{
+        message:'hello word!'
+    }
+})
+</code></pre></div><p>正常情况下，对应引入的文件从node_modules中找
+<code>node_modules/vue/package.json</code></p> <div class="language- extra-class"><pre class="language-text"><code>&quot;module&quot;:&quot;dist/vue.runtime.esm.js&quot; //module指向的地址
+
+</code></pre></div><p>webpack的配置</p> <p>如果是compiler版本则会自动在配置文件中加上<code>vue</code>别名这一行定义。则当<code>import vue</code>时，从以下路径中寻找。</p> <div class="language- extra-class"><pre class="language-text"><code>resolve: {
+    extensions: ['.js', '.vue', '.json'],
+    alias: {//定义的别名
+      'vue': resolve('node_modules/vue/dist/vue.esm.js'),
+      '@': resolve('src'),
+    }
+  },
+</code></pre></div><p>打开<code>node_modules/vue/dist/vue.esm.js</code>，搜索init方法,加入断点。</p> <div class="language- extra-class"><pre class="language-text"><code>function initMixin (Vue) {
+  Vue.prototype._init = function (options) {
+  
+  debugger
+  
+    var vm = this;
+    // a uid
+    vm._uid = uid$3++;
+    }
+}
+</code></pre></div><h3 id="runtime-only-vs-runtime-compiler（版本介绍）"><a href="#runtime-only-vs-runtime-compiler（版本介绍）" class="header-anchor">#</a> Runtime Only VS Runtime + Compiler（版本介绍）</h3> <p>通常我们利用 vue-cli 去初始化我们的 Vue.js 项目的时候会询问我们用 Runtime Only 版本的还是 Runtime + Compiler 版本。</p> <p>下面我们来对比这两个版本：</p> <ul><li>Runtime Only
+我们在使用 Runtime Only 版本的 Vue.js 的时候，通常需要借助如 webpack 的 vue-loader 工具把 .vue 文件编译成 JavaScript，因为是在编译阶段做的，所以它只包含运行时的 Vue.js 代码，因此代码体积也会更轻量。这个版本不支持.vue文件的写法。</li> <li>Runtime + Compiler
+我们如果没有对代码做预编译，但又使用了 Vue 的 template 属性并传入一个字符串，则需要在客户端编译模板。目前项目使用这个版本。如下所示：</li></ul> <div class="language- extra-class"><pre class="language-text"><code>// 需要编译器的版本
+new Vue({
+  template: '&lt;div&gt;{{ hi }}&lt;/div&gt;'
+})
+
+// 这种情况不需要
+new Vue({
+  render (h) {
+    return h('div', this.hi)
+  }
+})
+</code></pre></div><blockquote><p>因为在 Vue.js 2.0 中，最终渲染都是通过 render 函数，如果写 template 属性，则需要编译成 render 函数，那么这个编译过程会发生运行时，所以需要带有编译器的版本。</p></blockquote> <h3 id="疑问"><a href="#疑问" class="header-anchor">#</a> 疑问</h3> <ol><li>nodemodule中的vue文件目录和源码中文件目录的那些代码有什么关系</li></ol> <h2 id="数据驱动"><a href="#数据驱动" class="header-anchor">#</a> 数据驱动</h2> <h3 id="new-vue发生了什么"><a href="#new-vue发生了什么" class="header-anchor">#</a> new vue发生了什么</h3> <p>Vue 实际上是一个类，类在 Javascript 中是用 Function 来实现的，来看一下源码，在<code>src/core/instance/index.js</code> 中。</p> <div class="language- extra-class"><pre class="language-text"><code>function Vue (options) {
+  // ...
+  this._init(options)
+}
+</code></pre></div><p>然后会调用 <code>this._init</code> 方法， 该方法在 <code>src/core/instance/init.js</code> 中定义。</p> <div class="language- extra-class"><pre class="language-text"><code>Vue.prototype._init = function (options?: Object) {
+   // ...
+ 
+  // merge options 合并配置
+  if (options &amp;&amp; options._isComponent) {
+   // ...
+  } else {
+    vm.$options = mergeOptions(
+      resolveConstructorOptions(vm.constructor),
+      options || {},
+      vm
+    )
+  }
+  /* istanbul ignore else */
+  if (process.env.NODE_ENV !== 'production') {
+    initProxy(vm)
+  } else {
+    vm._renderProxy = vm
+  }
+  // 初始化生命周期，初始化事件中心，初始化渲染，初始化 data、props、computed、watcher 等等
+  vm._self = vm
+  initLifecycle(vm)
+  initEvents(vm)
+  initRender(vm)
+  callHook(vm, 'beforeCreate')
+  initInjections(vm) // resolve injections before data/props
+  initState(vm)
+  initProvide(vm) // resolve provide after data/props
+  callHook(vm, 'created')
+
+   // ...
+  if (vm.$options.el) {
+    vm.$mount(vm.$options.el) //挂载
+  }
+}
+</code></pre></div><blockquote><ul><li>Vue 初始化主要就干了几件事情，合并配置，初始化生命周期，初始化事件中心，初始化渲染，初始化 data、props、computed、watcher 等等。</li> <li>在初始化的最后，检测到如果有 el 属性，则调用 vm.$mount 方法挂载 vm，挂载的目标就是把模板渲染成最终的 DOM，那么接下来我们来分析 Vue 的挂载过程。</li></ul></blockquote> <h3 id="vue实例挂载实现"><a href="#vue实例挂载实现" class="header-anchor">#</a> vue实例挂载实现</h3> <p>Vue 中我们是通过 <code>$mount</code> 实例方法去挂载 <code>vm</code> 的，<code>$mount</code> 方法在多个文件中都有定义，因为 <code>$mount</code> 这个方法的实现是和平台、构建方式都相关的。</p> <ul><li>src/platform/web/entry-runtime-with-compiler.js --仅在compiler 版本存在</li> <li>src/platform/web/runtime/index.js     --web端</li> <li>src/platform/weex/runtime/index.js    --weex</li></ul> <p><code>compiler</code> 版本的 <code>$mount</code> 实现非常有意思，先来看一下 <code>src/platform/web/entry-runtime-with-compiler.js</code> 文件中定义：</p> <div class="language- extra-class"><pre class="language-text"><code>/*1、缓存了原型上的 $mount 方法，再重新定义该方法*/
+const mount = Vue.prototype.$mount 
+Vue.prototype.$mount = function (
+  el?: string | Element,
+  hydrating?: boolean
+): Component {
+  el = el &amp;&amp; query(el)
+
+  /*2、对el做限制*/
+  if (el === document.body || el === document.documentElement) {
+    process.env.NODE_ENV !== 'production' &amp;&amp; warn(
+      `Do not mount Vue to &lt;html&gt; or &lt;body&gt; - mount to normal elements instead.`
+    )
+    return this
+  }
+  const options = this.$options
+  /*3、把 el 或者 template 字符串转换成 render 方法 */
+  if (!options.render) {
+    let template = options.template
+    if (template) {
+      if (typeof template === 'string') {
+        if (template.charAt(0) === '#') {
+          template = idToTemplate(template)
+          /* istanbul ignore if */
+          if (process.env.NODE_ENV !== 'production' &amp;&amp; !template) {
+            warn(
+              `Template element not found or is empty: ${options.template}`,
+              this
+            )
+          }
+        }
+      } else if (template.nodeType) {
+        template = template.innerHTML
+      } else {
+        if (process.env.NODE_ENV !== 'production') {
+          warn('invalid template option:' + template, this)
+        }
+        return this
+      }
+    } else if (el) {
+      template = getOuterHTML(el)
+    }
+    if (template) {
+         // ...
+        /*在线编译过程，返回render函数 */
+      const { render, staticRenderFns } = compileToFunctions(template, {
+        shouldDecodeNewlines,
+        shouldDecodeNewlinesForHref,
+        delimiters: options.delimiters,
+        comments: options.comments
+      }, this)
+      options.render = render
+      options.staticRenderFns = staticRenderFns
+
+      /* istanbul ignore if */
+       // ...
+    }
+  }
+  /*4、最后调用原型上的$mount挂载 */
+  return mount.call(this, el, hydrating)
+}
+</code></pre></div><blockquote><ol><li>首先缓存了原型上的 $mount 方法，再重新定义该方法，我们先来分析这段代码。</li> <li>对 el 做了限制，Vue 不能挂载在 body、html 这样的根节点上。</li> <li>把 el 或者 template 字符串转换成 render 方法。这里我们要牢记，在 Vue 2.0 版本中，所有 Vue 的组件的渲染最终都需要 render 方法，无论我们是用单文件 .vue 方式开发组件，还是写了 el 或者 template 属性，最终都会转换成 render 方法，那么这个过程是 Vue 的一个“在线编译”的过程，它是调用 compileToFunctions 方法实现的，编译过程我们之后会介绍。</li> <li>最后调用原先原型上的 $mount 方法挂载。</li></ol></blockquote> <p>原先原型上的 $mount 方法在 <code>src/platform/web/runtime/index.js</code> 中定义,因为它可以被 <code>runtime only</code> 版本的 Vue 直接使用的。</p> <div class="language- extra-class"><pre class="language-text"><code>// public mount method
+Vue.prototype.$mount = function (
+  el?: string | Element, /*表示挂载的元素，可以是字符串，也可以是 DOM 对象*/
+  hydrating?: boolean, /*和服务端渲染相关 */
+): Component {
+  el = el &amp;&amp; inBrowser ? query(el) : undefined
+  return mountComponent(this, el, hydrating)
+}
+</code></pre></div><p><code>$mount</code> 方法实际上会去调用 <code>mountComponent</code> 方法，这个方法定义在 <code>src/core/instance/lifecycle.js</code> 文件中：</p> <div class="language- extra-class"><pre class="language-text"><code>export function mountComponent (
+  vm: Component,
+  el: ?Element,
+  hydrating?: boolean
+): Component {
+  vm.$el = el
+  if (!vm.$options.render) {
+    vm.$options.render = createEmptyVNode
+
+    /* 一些警告及错误提示 */
+     // ...
+    
+  }
+  callHook(vm, 'beforeMount')
+
+  let updateComponent
+  /* 调用 vm._render 方法先生成虚拟 Node，最终调用 vm._update 更新 DOM */
+  if (process.env.NODE_ENV !== 'production' &amp;&amp; config.performance &amp;&amp; mark) {
+    updateComponent = () =&gt; {
+      const name = vm._name
+      const id = vm._uid
+      const startTag = `vue-perf-start:${id}`
+      const endTag = `vue-perf-end:${id}`
+
+      mark(startTag)
+      const vnode = vm._render()
+      mark(endTag)
+      measure(`vue ${name} render`, startTag, endTag)
+
+      mark(startTag)
+      vm._update(vnode, hydrating)
+      mark(endTag)
+      measure(`vue ${name} patch`, startTag, endTag)
+    }
+  } else {
+    updateComponent = () =&gt; {
+      vm._update(vm._render(), hydrating)
+    }
+  }
+
+ //实例化一个渲染watcher
+  new Watcher(vm, updateComponent, noop, {
+    before () {
+      if (vm._isMounted) {
+        callHook(vm, 'beforeUpdate')
+      }
+    }
+  }, true /* isRenderWatcher */)
+  hydrating = false
+
+
+  if (vm.$vnode == null) {
+    vm._isMounted = true
+    callHook(vm, 'mounted')
+  }
+  return vm
+}
+
+</code></pre></div><p>mountComponent 核心</p> <blockquote><ul><li>先实例化一个渲染Watcher，在它的回调函数中会调用 updateComponent 方法。</li> <li>在此方法中调用 vm._render 方法先生成虚拟 Node，最终调用 vm._update 更新 DOM。</li></ul></blockquote> <p>Watcher 在这里起到两个作用</p> <blockquote><ol><li>一个是初始化的时候会执行回调函数</li> <li>另一个是当 vm实例中的监测的数据发生变化的时候执行回调函数</li></ol></blockquote> <h3 id="render"><a href="#render" class="header-anchor">#</a> render</h3> <p>Vue 的<code>_render</code> 方法是实例的一个私有方法，用来把实例渲染成一个<code>V Node</code>。它的定义在 src/core/instance/render.js 文件中：</p> <div class="language- extra-class"><pre class="language-text"><code>Vue.prototype._render = function (): VNode {
+  const vm: Component = this
+  const { render, _parentVnode } = vm.$options
+
+  // ...
+
+  vm.$vnode = _parentVnode
+  // render self
+  let vnode
+  try {
+    //重点
+    vnode = render.call(vm._renderProxy, vm.$createElement)
+  } catch (e) {
+    handleError(e, vm, `render`)
+     // ...
+  }
+  // return empty vnode in case the render function errored out
+  if (!(vnode instanceof VNode)) {
+     // ...
+    vnode = createEmptyVNode()
+  }
+  // set parent
+  vnode.parent = _parentVnode
+  return vnode
+}
+</code></pre></div><h4 id="总结"><a href="#总结" class="header-anchor">#</a> 总结</h4> <blockquote><p>vm._render 最终是通过执行 createElement 方法并返回的是 vnode，它是一个虚拟 Node。</p></blockquote> <h3 id="virtual-dom"><a href="#virtual-dom" class="header-anchor">#</a> Virtual DOM</h3> <p>VNode 是对真实 DOM 的一种抽象描述，它的核心定义无非就几个关键属性，标签名、数据、子节点、键值等，其它属性都是用来扩展 VNode 的灵活性以及实现一些特殊 feature 的。由于 VNode 只是用来映射到真实 DOM 的渲染，不需要包含操作 DOM 的方法，因此它是非常轻量和简单的。</p> <h4 id="createelement"><a href="#createelement" class="header-anchor">#</a> createElement</h4> <p>Vue.js 利用 createElement 方法创建 VNode，它定义在 src/core/vdom/create-elemenet.js 中</p> <div class="language- extra-class"><pre class="language-text"><code>export function createElement (
+  context: Component,
+  tag: any,
+  data: any,
+  children: any,
+  normalizationType: any,
+  alwaysNormalize: boolean
+): VNode | Array&lt;VNode&gt; {
+  if (Array.isArray(data) || isPrimitive(data)) {
+    normalizationType = children
+    children = data
+    data = undefined
+  }
+  if (isTrue(alwaysNormalize)) {
+    normalizationType = ALWAYS_NORMALIZE
+  }
+  /* 初始化状态 */
+  return _createElement(context, tag, data, children, normalizationType)
+}
+</code></pre></div><p>真正创建 VNode 的函数 _createElement</p> <div class="language- extra-class"><pre class="language-text"><code>export function _createElement (
+  context: Component,
+  tag?: string | Class&lt;Component&gt; | Function | Object,
+  data?: VNodeData,
+  children?: any,
+  normalizationType?: number
+): VNode | Array&lt;VNode&gt; {
+  if (isDef(data) &amp;&amp; isDef((data: any).__ob__)) {
+    process.env.NODE_ENV !== 'production' &amp;&amp; warn(
+      `Avoid using observed data object as vnode data: ${JSON.stringify(data)}\n` +
+      'Always create fresh vnode data objects in each render!',
+      context
+    )
+    return createEmptyVNode()
+  }
+  
+  // ... 状态判断
+  
+  /*1、 children的规范化 */
+  if (normalizationType === ALWAYS_NORMALIZE) {
+    children = normalizeChildren(children)//重点
+  } else if (normalizationType === SIMPLE_NORMALIZE) {
+    children = simpleNormalizeChildren(children) //重点
+  }
+  
+  /* 2、创建VNode实例 */
+  let vnode, ns
+  if (typeof tag === 'string') {
+    let Ctor
+    ns = (context.$vnode &amp;&amp; context.$vnode.ns) || config.getTagNamespace(tag)
+    if (config.isReservedTag(tag)) {//内置节点
+      // 创建普通VNode
+      vnode = new VNode(
+        config.parsePlatformTagName(tag), data, children,
+        undefined, undefined, context
+      )
+    } else if (isDef(Ctor = resolveAsset(context.$options, 'components', tag))) {//已注册的组件名
+      // 创建一个组件类型的VNode
+      vnode = createComponent(Ctor, data, context, children, tag)
+    } else {//否则创建一个未知标签的VNode
+      vnode = new VNode(
+        tag, data, children,
+        undefined, undefined, context
+      )
+    }
+  } else {
+    //如果是 tag 一个 Component 类型，则直接调用 createComponent 创建一个组件类型的 VNode 节点。
+    vnode = createComponent(tag, data, context, children)
+  }
+  
+  if (Array.isArray(vnode)) {
+    return vnode
+  } else if (isDef(vnode)) {
+    if (isDef(ns)) applyNS(vnode, ns)
+    if (isDef(data)) registerDeepBindings(data)
+    return vnode
+  } else {
+    return createEmptyVNode()
+  }
+}
+</code></pre></div><p>_createElement 方法有 5 个参数：</p> <ul><li>context 表示 VNode 的上下文环境，它是 Component 类型；</li> <li>tag 表示标签，它可以是一个字符串，也可以是一个 Component；data 表示 VNode 的数据，它是一个 VNodeData 类型；</li> <li>children 表示当前 VNode 的子节点，它是任意类型的，它接下来需要被规范为标准的 VNode 数组；</li> <li>normalizationType 表示子节点规范的类型，类型不同规范的方法也就不一样，它主要是参考 render 函数是编译生成的还是用户手写的。</li></ul> <p>children 的规范化以及 VNode 的创建</p> <ul><li>simpleNormalizeChildren 方法调用场景是 render 函数是编译生成的。理论上编译生成的 children 都已经是 VNode 类型的，但这里有一个例外，就是 functional component 函数式组件返回的是一个数组而不是一个根节点，所以会通过 Array.prototype.concat 方法把整个 children 数组打平，让它的深度只有一层。</li> <li>normalizeArrayChildren 主要的逻辑就是遍历 children，获得单个节点 c，然后对 c 的类型判断，如果是一个数组类型，则递归调用 normalizeArrayChildren; 如果是基础类型，则通过 createTextVNode 方法转换成 VNode 类型；否则就已经是 VNode 类型了，如果 children 是一个列表并且列表还存在嵌套的情况，则根据 nestedIndex 去更新它的 key。</li> <li>经过对 children 的规范化，children 变成了一个类型为 VNode 的 Array。</li></ul> <h4 id="总结："><a href="#总结：" class="header-anchor">#</a> 总结：</h4> <blockquote><p>createElement 创建 VNode 的过程，每个 VNode 有 children，children 每个元素也是一个 VNode，这样就形成了一个 VNode Tree，它很好的描述了我们的 DOM Tree。
+回到 mountComponent 函数的过程，我们已经知道 vm._render 是如何创建了一个 VNode，接下来就是要把这个 VNode 渲染成一个真实的 DOM 并渲染出来，这个过程是通过 vm._update 完成的，接下来分析一下这个过程。</p></blockquote> <h3 id="update"><a href="#update" class="header-anchor">#</a> update</h3> <p>Vue 的 _update 是实例的一个私有方法，它被调用的时机有 2 个，一个是首次渲染，一个是数据更新的时候；</p> <p>这一章节只分析首次渲染部分。_update 方法的作用是把 VNode 渲染成真实的 DOM，它的定义在 <code>src/core/instance/lifecycle.js</code> 中：</p> <div class="language- extra-class"><pre class="language-text"><code>Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
+  // ...
+  
+  if (!prevVnode) {
+    // initial render
+    vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */)
+  } else {
+    // updates
+    vm.$el = vm.__patch__(prevVnode, vnode)
+  }
+  
+  //...
+  
+}
+
+</code></pre></div><p><code>_update</code>的核心就是调用<code>vm.__patch__</code> 方法，该方法实际上在不同的平台，比如 web 和 weex 上的定义不同，在 web 平台中它的定义在 src/platforms/web/runtime/index.js 中：</p> <div class="language- extra-class"><pre class="language-text"><code>Vue.prototype.__patch__ = inBrowser ? patch : noop
+</code></pre></div><p>在web平台上，服务端渲染没有真实的浏览器DOM环境，不需要把VNode转换成DOM，所以是一个空函数。在浏览器渲染中，指向了patch方法，他的定义在<code>src/platforms/web/runtime/patch.js</code>中：</p> <div class="language- extra-class"><pre class="language-text"><code>import * as nodeOps from 'web/runtime/node-ops'
+//...
+
+const modules = platformModules.concat(baseModules)
+
+//通过函数科里化，先把差异磨平
+export const patch: Function = createPatchFunction({ nodeOps, modules })
+</code></pre></div><p>该方法的定义是调用 <code>createPatchFunction</code> 方法的返回值，这里传入了一个对象，包含 <code>nodeOps</code> 参数和 <code>modules</code> 参数。 createPatchFunction 的实现，定义在<code>src/core/vdom/patch.js</code>中：</p> <div class="language- extra-class"><pre class="language-text"><code>const hooks = ['create', 'activate', 'update', 'remove', 'destroy']
+
+export function createPatchFunction (backend) {
+  let i, j
+  const cbs = {}
+
+  const { modules, nodeOps } = backend
+  
+  for (i = 0; i &lt; hooks.length; ++i) {
+    cbs[hooks[i]] = []
+    for (j = 0; j &lt; modules.length; ++j) {
+      if (isDef(modules[j][hooks[i]])) {
+        cbs[hooks[i]].push(modules[j][hooks[i]])
+      }
+    }
+  }
+
+  // ...
+  /*  返回一个path方法，差异化已经磨平 */
+  return function patch (oldVnode, vnode, hydrating, removeOnly) {
+    if (isUndef(vnode)) {
+      if (isDef(oldVnode)) invokeDestroyHook(oldVnode)
+      return
+    }
+
+    let isInitialPatch = false
+    const insertedVnodeQueue = []
+
+    if (isUndef(oldVnode)) {
+      // empty mount (likely as component), create new root element
+      isInitialPatch = true
+      createElm(vnode, insertedVnodeQueue)
+    } else {
+      const isRealElement = isDef(oldVnode.nodeType)
+      if (!isRealElement &amp;&amp; sameVnode(oldVnode, vnode)) {
+        // patch existing root node
+        patchVnode(oldVnode, vnode, insertedVnodeQueue, removeOnly)
+      } else {
+        if (isRealElement) {//是否真实的dom节点
+          if (oldVnode.nodeType === 1 &amp;&amp; oldVnode.hasAttribute(SSR_ATTR)) {
+            oldVnode.removeAttribute(SSR_ATTR)
+            hydrating = true
+          }
+          if (isTrue(hydrating)) {
+            if (hydrate(oldVnode, vnode, insertedVnodeQueue)) {
+              invokeInsertHook(vnode, insertedVnodeQueue, true)
+              return oldVnode
+            } else if (process.env.NODE_ENV !== 'production') {
+              warn(
+                'The client-side rendered virtual DOM tree is not matching ' +
+                'server-rendered content. This is likely caused by incorrect ' +
+                'HTML markup, for example nesting block-level elements inside ' +
+                '&lt;p&gt;, or missing &lt;tbody&gt;. Bailing hydration and performing ' +
+                'full client-side render.'
+              )
+            }
+          }
+         //通过 emptyNodeAt 方法把 oldVnode 转换成 VNode 对象
+          oldVnode = emptyNodeAt(oldVnode)
+        }
+
+        // 替换当前的节点
+        const oldElm = oldVnode.elm
+        const parentElm = nodeOps.parentNode(oldElm)
+
+        // 调用 createElm 方法 create new node
+        createElm(
+          vnode,
+          insertedVnodeQueue,
+          oldElm._leaveCb ? null : parentElm,
+          nodeOps.nextSibling(oldElm)
+        )
+
+        // update parent placeholder node element, recursively
+        if (isDef(vnode.parent)) {
+          let ancestor = vnode.parent
+          const patchable = isPatchable(vnode)
+          while (ancestor) {
+            for (let i = 0; i &lt; cbs.destroy.length; ++i) {
+              cbs.destroy[i](ancestor)
+            }
+            ancestor.elm = vnode.elm
+            if (patchable) {
+              for (let i = 0; i &lt; cbs.create.length; ++i) {
+                cbs.create[i](emptyNode, ancestor)
+              }
+              // #6513
+              // invoke insert hooks that may have been merged by create hooks.
+              // e.g. for directives that uses the &quot;inserted&quot; hook.
+              const insert = ancestor.data.hook.insert
+              if (insert.merged) {
+                // start at index 1 to avoid re-invoking component mounted hook
+                for (let i = 1; i &lt; insert.fns.length; i++) {
+                  insert.fns[i]()
+                }
+              }
+            } else {
+              registerRef(ancestor)
+            }
+            ancestor = ancestor.parent
+          }
+        }
+
+        // destroy old node
+        if (isDef(parentElm)) {
+          removeVnodes(parentElm, [oldVnode], 0, 0)
+        } else if (isDef(oldVnode.tag)) {
+          invokeDestroyHook(oldVnode)
+        }
+      }
+    }
+
+    invokeInsertHook(vnode, insertedVnodeQueue, isInitialPatch)
+    return vnode.elm
+  }
+}
+</code></pre></div><p>这里用到了一<strong>个函数柯里化</strong>的技巧，通过 <code>createPatchFunction</code> 把差异化参数提前固化，这样不用每次调用 <code>patch</code> 的时候都传递 <code>nodeOps</code> 和 <code>modules</code> 了，这种编程技巧也非常值得学习。</p> <p>回到<code>patch</code>方法本身，它接收 4个参数:</p> <ul><li><code>oldVnode</code> 表示旧的 <code>VNode</code> 节点，它也可以不存在或者是一个 <code>DOM</code> 对象；</li> <li><code>vnode</code> 表示执行 <code>_render</code> 后返回的<code>VNode</code> 的节点；</li> <li><code>hydrating</code> 表示是否是服务端渲染；</li> <li><code>removeOnly</code> 是给 <code>transition-group</code> 用的，之后会介绍。</li></ul> <blockquote><p>createPatchFunction 内部定义了一系列的辅助方法，最终返回了一个 patch 方法，这个方法就赋值给了 vm._update 函数里调用的 vm.<strong>patch</strong>。</p></blockquote> <h2 id="组件化"><a href="#组件化" class="header-anchor">#</a> 组件化</h2> <h3 id="createcomponent"><a href="#createcomponent" class="header-anchor">#</a> createComponent</h3> <p>上一章我们在分析 createElement 的实现的时候，它最终会调用 _createElement 方法，其中有一段逻辑是对参数 tag 的判断，如果是一个普通的 html 标签，像上一章的例子那样是一个普通的 div，则会实例化一个普通 VNode 节点，否则通过 createComponent 方法创建一个组件 VNode。
+<code>src/core/vdom/create-element.js</code>中的<code>_createElement</code>方法</p> <div class="language- extra-class"><pre class="language-text"><code>export function _createElement(){
+    //...
+    if (typeof tag === 'string') {
+      //...
+    } else {
+      // direct component options / constructor
+      vnode = createComponent(tag, data, context, children)
+    }
+}
+</code></pre></div><p>这一章传入的是一个 <code>App</code> 对象，它本质上是一个 <code>Component</code> 类型，那么它会走到上述代码的 <code>else</code>逻辑，直接通过 <code>createComponent</code> 方法来创建 <code>vnode</code>。它定义在 <code>src/core/vdom/create-component.js</code> 文件中：</p> <div class="language- extra-class"><pre class="language-text"><code>export function createComponent (
+  Ctor: Class&lt;Component&gt; | Function | Object | void,
+  data: ?VNodeData,
+  context: Component,
+  children: ?Array&lt;VNode&gt;,
+  tag?: string
+): VNode | Array&lt;VNode&gt; | void {
+  //...
+  
+  //1、构造子类构造函数
+  const baseCtor = context.$options._base
+
+  if (isObject(Ctor)) {
+    Ctor = baseCtor.extend(Ctor)//baseCtor 实际上就是 Vue
+  }
+
+  //...
+
+  //2、安装钩子函数
+  installComponentHooks(data)
+
+  //3、实例化 VNode
+  const name = Ctor.options.name || tag
+  const vnode = new VNode(
+    `vue-component-${Ctor.cid}${name ? `-${name}` : ''}`,
+    data, undefined, undefined, undefined, context,
+    { Ctor, propsData, listeners, tag, children },
+    asyncFactory
+  )
+
+  //...
+
+  return vnode
+}
+</code></pre></div><h4 id="构造子类构造函数"><a href="#构造子类构造函数" class="header-anchor">#</a> 构造子类构造函数</h4> <div class="language- extra-class"><pre class="language-text"><code> //1、构造子类构造函数
+  const baseCtor = context.$options._base
+
+  if (isObject(Ctor)) {
+    Ctor = baseCtor.extend(Ctor)//baseCtor 实际上就是 Vue
+  }
+</code></pre></div><p>这一步有2个地方要注意</p> <ul><li><code>baseCtor</code> 实际上就是 <code>Vue</code>，这个的定义是在最开始初始化 <code>Vue</code> 的阶段定义了<code>Vue.options._base = Vue</code>,在<code>_init</code> 函数中通过<code>mergeOptions</code>把 <code>Vue</code> 上的一些<code>option</code> 扩展到了<code>vm.$options</code>上，所以我们也就能通过 <code>vm.$options._base</code>拿到 <code>Vue</code> 这个构造函数了。</li> <li><code>Vue.extend</code> 的作用就是构造一个 <code>Vue</code> 的子类，它使用一种非常经典的<code>原型继承</code>的方式把一个纯对象转换一个继承于 <code>Vue</code> 的构造器<code>Sub</code> 并返回，然后对 <code>Sub</code> 这个对象本身扩展了一些属性，如扩展 <code>options</code>、添加全局 API 等；并且对配置中的 <code>props</code> 和 <code>computed</code> 做了初始化工作；最后对于这个 Sub 构造函数做了缓存，避免多次执行 Vue.extend 的时候对同一个子组件重复构造。</li></ul> <p>我们来看一下<code>Vue.extend</code>函数的定义，在 <code>src/core/global-api/extend.js</code>中。</p> <div class="language- extra-class"><pre class="language-text"><code>Vue.extend = function (extendOptions: Object): Function {
+  extendOptions = extendOptions || {}
+  const Super = this
+  const SuperId = Super.cid
+  const cachedCtors = extendOptions._Ctor || (extendOptions._Ctor = {})
+  
+  //避免重复构造
+  if (cachedCtors[SuperId]) {
+    return cachedCtors[SuperId]
+  }
+
+  //通过原型继承
+  Sub.prototype = Object.create(Super.prototype)
+  Sub.prototype.constructor = Sub
+  Sub.cid = cid++
+  //扩展options
+  Sub.options = mergeOptions(
+    Super.options,
+    extendOptions
+  )
+  Sub['super'] = Super
+
+  if (Sub.options.props) {//初始化props
+    initProps(Sub)
+  }
+  if (Sub.options.computed) {//初始化computed
+    initComputed(Sub)
+  }
+  //...
+
+  // cache constructor
+  cachedCtors[SuperId] = Sub  //缓存构造函数
+  return Sub
+}
+</code></pre></div><h4 id="安装组件钩子函数"><a href="#安装组件钩子函数" class="header-anchor">#</a> 安装组件钩子函数</h4> <div class="language- extra-class"><pre class="language-text"><code>// install component management hooks onto the placeholder node
+installComponentHooks(data)
+</code></pre></div><div class="language- extra-class"><pre class="language-text"><code>const hooksToMerge = Object.keys(componentVNodeHooks) //当前组件的生命周期钩子
+
+function installComponentHooks (data: VNodeData) {
+const componentVNodeHooks = {
+   //init在patch的时候会用到
+  init (vnode: VNodeWithData, hydrating: boolean): ?boolean {
+    if (
+      vnode.componentInstance &amp;&amp;
+      !vnode.componentInstance._isDestroyed &amp;&amp;
+      vnode.data.keepAlive
+    ) {
+      // kept-alive components, treat as a patch
+      const mountedNode: any = vnode // work around flow
+      componentVNodeHooks.prepatch(mountedNode, mountedNode)
+    } else {
+      const child = vnode.componentInstance = createComponentInstanceForVnode(
+        vnode,
+        activeInstance
+      )
+      child.$mount(hydrating ? vnode.elm : undefined, hydrating)
+    }
+  },
+
+}
+
+//...
+  const hooks = data.hook || (data.hook = {})
+  for (let i = 0; i &lt; hooksToMerge.length; i++) {//循环组件的钩子数组
+    const key = hooksToMerge[i]
+    const existing = hooks[key] //以有的钩子
+    const toMerge = componentVNodeHooks[key] //组件的钩子
+    if (existing !== toMerge &amp;&amp; !(existing &amp;&amp; existing._merged)) {//合并钩子
+      hooks[key] = existing ? mergeHook(toMerge, existing) : toMerge
+    }
+  }
+  
+  //...
+}
+</code></pre></div><p>整个 <code>installComponentHooks</code> 的过程就是把 <code>componentVNodeHooks</code> 的钩子函数合并到 <code>data.hook</code> 中，在 <code>VNode</code> 执行 <code>patch</code> 的过程中执行相关的钩子函数，具体的执行我们稍后在介绍 <code>patch</code> 过程中会详细介绍。这里要注意的是合并策略，在合并过程中，如果某个时机的钩子已经存在 <code>data.hook</code> 中，那么通过执行 <code>mergeHook</code> 函数做合并，这个逻辑很简单，就是在最终执行的时候，依次执行这两个钩子函数即可。</p> <h4 id="实例化-vnode"><a href="#实例化-vnode" class="header-anchor">#</a> 实例化 VNode</h4> <div class="language- extra-class"><pre class="language-text"><code>const name = Ctor.options.name || tag
+const vnode = new VNode(
+  `vue-component-${Ctor.cid}${name ? `-${name}` : ''}`,
+  data, undefined, undefined, undefined, context,
+  { Ctor, propsData, listeners, tag, children },
+  asyncFactory
+)
+return vnode
+</code></pre></div><p>通过 <code>new VNode</code> 实例化一个 <code>vnode</code> 并返回。需要注意的是和普通元素节点的<code>vnode</code> 不同，组件的 <code>vnode</code>是没有<code>children</code>的，这点很关键，在之后的<code>patch</code> 过程中我们会再提。</p> <p>总结：</p> <blockquote><p>在渲染一个组件的时候的 3 个关键逻辑：构造子类构造函数，安装组件钩子函数和实例化 <code>vnode</code>。<code>createComponent</code> 后返回的是组件 <code>vnode</code>，它也一样走到 vm._update 方法，进而执行了 <code>patch</code> 函数，</p></blockquote> <h3 id="patch"><a href="#patch" class="header-anchor">#</a> patch</h3> <p>patch 的过程会调用 createElm 创建元素节点
+它的定义在 <code>src/core/vdom/patch.js</code> 中</p> <div class="language- extra-class"><pre class="language-text"><code>function createElm (
+  vnode,
+  insertedVnodeQueue,
+  parentElm,
+  refElm,
+  nested,
+  ownerArray,
+  index
+) {
+  // ...
+  if (createComponent(vnode, insertedVnodeQueue, parentElm, refElm)) {
+    return
+  }
+  // ...
+}
+</code></pre></div><p>这里会判断 <code>createComponent(vnode, insertedVnodeQueue, parentElm, refElm)</code>的返回值，如果为 true 则直接结束，那么接下来看一下 createComponent 方法的实现：</p> <div class="language- extra-class"><pre class="language-text"><code>function createComponent (vnode, insertedVnodeQueue, parentElm, refElm) {
+  let i = vnode.data
+  if (isDef(i)) {
+    //...
+    if (isDef(i = i.hook) &amp;&amp; isDef(i = i.init)) {
+      i(vnode, false /* hydrating */)
+    }
+    //...
+    if (isDef(vnode.componentInstance)) {
+      initComponent(vnode, insertedVnodeQueue)
+      insert(parentElm, vnode.elm, refElm)
+      if (isTrue(isReactivated)) {
+        reactivateComponent(vnode, insertedVnodeQueue, parentElm, refElm)
+      }
+      return true
+    }
+  }
+}
+</code></pre></div><p>如果 vnode 是一个组件 VNode，那么条件会满足，并且得到 i 就是 init 钩子函数，回顾上节我们在创建组件 VNode 的时候合并钩子函数中就包含 init 钩子函数，定义在 src/core/vdom/create-component.js 中：</p> <div class="language- extra-class"><pre class="language-text"><code>init (vnode: VNodeWithData, hydrating: boolean): ?boolean {
+  if (
+    vnode.componentInstance &amp;&amp;
+    !vnode.componentInstance._isDestroyed &amp;&amp;
+    vnode.data.keepAlive
+  ) {
+    //...
+  } else {
+  //创建一个vue实例
+    const child = vnode.componentInstance = createComponentInstanceForVnode(
+      vnode,
+      activeInstance
+    )
+    //挂载子组件
+    child.$mount(hydrating ? vnode.elm : undefined, hydrating)
+  }
+},
+</code></pre></div><p>init 钩子函数执行也很简单，它是通过 <code>createComponentInstanceForVnode</code>创建一个<code>Vue</code> 的实例，然后调用<code>$mount</code>方法挂载子组件， 先来看一下 <code>createComponentInstanceForVnode</code>的实现：</p> <div class="language- extra-class"><pre class="language-text"><code>export function createComponentInstanceForVnode (
+  vnode: any, // we know it's MountedComponentVNode but flow doesn't
+  parent: any, // activeInstance in lifecycle state
+): Component {
+  const options: InternalComponentOptions = {
+    _isComponent: true,
+    _parentVnode: vnode,
+    parent
+  }
+  // check inline-template render functions
+  const inlineTemplate = vnode.data.inlineTemplate
+  if (isDef(inlineTemplate)) {
+    options.render = inlineTemplate.render
+    options.staticRenderFns = inlineTemplate.staticRenderFns
+  }
+  return new vnode.componentOptions.Ctor(options)
+}
+</code></pre></div><p><code>createComponentInstanceForVnode</code> 函数构造的一个内部组件的参数，然后执行 <code>new vnode.componentOptions.Ctor(options)</code>。这里的 <code>vnode.componentOptions.Ctor</code> 对应的就是子组件的构造函数，我们上一节分析了它实际上是继承于 <code>Vue</code> 的一个构造器 <code>Sub</code>，相当于 <code>new Sub(options)</code> 这里有几个关键参数要注意几个点，<code>_isComponent</code>为 <code>true</code> 表示它是一个组件，<code>parent</code> 表示当前激活的组件实例。</p> <p>所以子组件的实例化实际上就是在这个时机执行的，并且它会执行实例的<code>_init</code> 方法，这个过程有一些和之前不同的地方需要挑出来说，代码在 src/core/instance/init.js 中：</p> <div class="language- extra-class"><pre class="language-text"><code>Vue.prototype._init = function (options?: Object) {
+  const vm: Component = this
+  // 合并options
+  if (options &amp;&amp; options._isComponent) {
+     //组件走到这里
+    initInternalComponent(vm, options)
+  } else {
+    //...
+  }
+  // ...
+  if (vm.$options.el) {
+    vm.$mount(vm.$options.el)
+  } 
+}
+</code></pre></div><p>这里首先是合并 options 的过程有变化，<code>_isComponent</code> 为 true，所以走到了 <code>initInternalComponent</code> 过程，这个函数的实现也简单看一下：</p> <div class="language- extra-class"><pre class="language-text"><code>export function initInternalComponent (vm: Component, options: InternalComponentOptions) {
+  const opts = vm.$options = Object.create(vm.constructor.options)
+  // doing this because it's faster than dynamic enumeration.
+  const parentVnode = options._parentVnode
+  opts.parent = options.parent  //合并
+  opts._parentVnode = parentVnode  //合并
+
+  const vnodeComponentOptions = parentVnode.componentOptions
+  opts.propsData = vnodeComponentOptions.propsData
+  opts._parentListeners = vnodeComponentOptions.listeners
+  opts._renderChildren = vnodeComponentOptions.children
+  opts._componentTag = vnodeComponentOptions.tag
+
+  if (options.render) {
+    opts.render = options.render
+    opts.staticRenderFns = options.staticRenderFns
+  }
+}
+</code></pre></div><p>这个过程我们重点记住以下几个点即可：<code>opts.parent = options.parent、opts._parentVnode = parentVnode</code>，它们是把之前我们通过 <code>createComponentInstanceForVnode</code> 函数传入的几个参数合并到内部的选项 $options 里了。</p> <p>再来看一下 _init 函数最后执行的代码：</p> <div class="language- extra-class"><pre class="language-text"><code>if (vm.$options.el) {
+   vm.$mount(vm.$options.el)
+}
+</code></pre></div><p>由于组件初始化的时候是不传<code>el</code> 的，因此组件是自己接管了 $mount 的过程，这个过程的主要流程在上一章介绍过了，回到组件 <code>init</code> 的过程<code>，componentVNodeHooks</code> 的 <code>init</code> 钩子函数，在完成实例化的 <code>_init</code> 后，接着会执行 <code>child.$mount(hydrating ? vnode.elm : undefined, hydrating)</code> 。这里 <code>hydrating</code>为 <code>true</code> 一般是服务端渲染的情况，我们只考虑客户端渲染，所以这里 <code>$mount</code> 相当于执行<code>child.$mount(undefined, false)</code>，它最终会调用 <code>mountComponent</code>方法，进而执行 <code>vm._render()</code>方法：</p> <h5 id="执行-vm-render-方法"><a href="#执行-vm-render-方法" class="header-anchor">#</a> 执行 <code>vm._render()</code>方法</h5> <div class="language- extra-class"><pre class="language-text"><code>Vue.prototype._render = function (): VNode {
+  const vm: Component = this
+  const { render, _parentVnode } = vm.$options
+
+  vm.$vnode = _parentVnode
+ 
+  let vnode
+  try {
+    vnode = render.call(vm._renderProxy, vm.$createElement)
+  } catch (e) {
+    // ...
+  }
+ //关键步骤，设置父子关系
+  vnode.parent = _parentVnode
+  return vnode
+}
+</code></pre></div><p><code>render</code> 函数生成的 <code>vnode</code> 的 <code>parent</code> 指向了 <code>_parentVnode</code>。</p> <h5 id="执行-vm-update-去渲染vnode"><a href="#执行-vm-update-去渲染vnode" class="header-anchor">#</a> 执行 <code>vm._update</code> 去渲染<code>VNode</code></h5> <p>了。来看一下组件渲染的过程中有哪些需要注意的，<code>vm._update</code> 的定义在 <code>src/core/instance/lifecycle.js</code>中：</p> <div class="language- extra-class"><pre class="language-text"><code>export let activeInstance: any = null
+Vue.prototype._update = function (vnode: VNode, hydrating?: boolean) {
+  const vm: Component = this
+  const prevEl = vm.$el
+  const prevVnode = vm._vnode
+  const prevActiveInstance = activeInstance
+  activeInstance = vm
+  vm._vnode = vnode //1、这个 vnode 是通过 vm._render() 返回的组件渲染 VNode
+
+  if (!prevVnode) {
+    // initial render
+    vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */)
+  } else {
+    // updates
+    vm.$el = vm.__patch__(prevVnode, vnode)
+  }
+  activeInstance = prevActiveInstance
+  // update __vue__ reference
+  if (prevEl) {
+    prevEl.__vue__ = null
+  }
+  if (vm.$el) {
+    vm.$el.__vue__ = vm
+  }
+  // if parent is an HOC, update its $el as well
+  if (vm.$vnode &amp;&amp; vm.$parent &amp;&amp; vm.$vnode === vm.$parent._vnode) {
+    vm.$parent.$el = vm.$el
+  }
+  // updated hook is called by the scheduler to ensure that children are
+  // updated in a parent's updated hook.
+}
+</code></pre></div><ol><li><code>vm._vnode = vnode</code>的逻辑，这个 <code>vnode</code> 是通过<code>vm._render()</code>返回的组件渲染 <code>VNode</code>，<code>vm._vnode</code> 和 <code>vm.$vnode</code> 的关系就是一种父子关系，用代码表达就是 <code>vm._vnode.parent === vm.$vnode</code>。</li> <li>这个<code>activeInstance</code>作用就是保持当前上下文的 Vue 实例，它是在<code>lifecycle</code>模块的全局变量，定义是 <code>export let activeInstance: any = null</code>，并且在之前我们调用 <code>createComponentInstanceForVnode</code>方法的时候从 <code>lifecycle</code> 模块获取，并且作为参数传入的。</li> <li>在 <code>vm._update</code>的过程中，把当前的 vm 赋值给 <code>activeInstance</code>，同时通过 <code>const prevActiveInstance = activeInstance</code> 用 <code>prevActiveInstance</code>保留上一次的 <code>activeInstance</code>。实际上，<code>prevActiveInstance</code> 和当前的 vm 是一个父子关系，当一个 vm 实例完成它的所有子树的 patch 或者 update 过程后，activeInstance 会回到它的父实例，这样就完美地保证了 <code>createComponentInstanceForVnode</code> 整个深度遍历过程中，我们在实例化子组件的时候能传入当前子组件的父 Vue 实例，并在<code>_init</code>的过程中，通过 <code>vm.$parent</code> 把这个父子关系保留。</li> <li>最后就是调用 <strong>patch</strong> 渲染 VNode</li></ol> <div class="language- extra-class"><pre class="language-text"><code>vm.$el = vm.__patch__(vm.$el, vnode, hydrating, false /* removeOnly */)
+ 
+function patch (oldVnode, vnode, hydrating, removeOnly) {
+  // ...
+  let isInitialPatch = false
+  const insertedVnodeQueue = []
+
+  if (isUndef(oldVnode)) {
+    // empty mount (likely as component), create new root element
+    isInitialPatch = true
+    createElm(vnode, insertedVnodeQueue)
+  } else {
+    // ...
+  }
+  // ...
+}
+</code></pre></div><p>注意，这里我们传入的 vnode 是组件渲染的 vnode，也就是我们之前说的 <code>vm._vnode</code>，如果组件的根节点是个普通元素，那么<code>vm._vnode</code> 也是普通的 vnode，这里 <code>createComponent(vnode, insertedVnodeQueue, parentElm, refElm)</code> 的返回值是 false。接下来的过程就和我们上一章一样了，先创建一个父节点占位符，然后再遍历所有子 VNode 递归调用 createElm，在遍历的过程中，如果遇到子 VNode 是一个组件的 VNode，则重复本节开始的过程，这样通过一个递归的方式就可以完整地构建了整个组件树。在完成组件的整个 patch 过程后，最后执行 insert(parentElm, vnode.elm, refElm) 完成组件的 DOM 插入，如果组件 patch 过程中又创建了子组件，那么DOM 的插入顺序是先子后父。</p> <p>总结：</p> <blockquote><p>那么到此，一个组件的 VNode 是如何创建、初始化、渲染的过程也就介绍完毕了。在对组件化的实现有一个大概了解后，接下来我们来介绍一下这其中的一些细节。我们知道编写一个组件实际上是编写一个 JavaScript 对象，对象的描述就是各种配置，之前我们提到在 _init 的最初阶段执行的就是 merge options 的逻辑。</p></blockquote> <h3 id="合并配置"><a href="#合并配置" class="header-anchor">#</a> 合并配置</h3> <p><code>new Vue</code>的过程通常有 2 种场景，一种是外部我们的代码主动调用<code>new Vue(options)</code> 的方式实例化一个 <code>Vue</code> 对象；另一种是我们上一节分析的组件过程中内部通过 <code>new Vue(options)</code>实例化子组件。
+无论哪种场景，都会执行实例的<code>_init(options)</code> 方法，它首先会执行一个<code>merge options</code>的逻辑，相关的代码在 <code>src/core/instance/init.js</code> 中：</p> <div class="language- extra-class"><pre class="language-text"><code>Vue.prototype._init = function (options?: Object) {
+  // merge options
+  if (options &amp;&amp; options._isComponent) {
+    initInternalComponent(vm, options)
+  } else {
+    vm.$options = mergeOptions(
+      resolveConstructorOptions(vm.constructor),
+      options || {},
+      vm
+    )
+  }
+  // ...
+}
+</code></pre></div><h4 id="外部调用场景"><a href="#外部调用场景" class="header-anchor">#</a> 外部调用场景</h4> <p>当执行 new Vue 的时候，在执行 this._init(options) 的时候，就会执行如下逻辑去合并 options：</p> <div class="language- extra-class"><pre class="language-text"><code>vm.$options = mergeOptions(
+  resolveConstructorOptions(vm.constructor),
+  options || {},
+  vm
+)
+</code></pre></div><p>这里通过调用<code>mergeOptions</code>方法来合并，它实际上就是把 <code>resolveConstructorOptions(vm.constructor)</code>的返回值和 <code>options</code>做合并，<code>resolveConstructorOptions</code> 的实现先不考虑，在我们这个场景下，它还是简单返回 <code>vm.constructor.options</code>，相当于 <code>Vue.options</code>。</p> <p>那么回到<code>mergeOptions</code>这个函数，它的定义在 <code>src/core/util/options.js</code>中：</p> <div class="language- extra-class"><pre class="language-text"><code>/**
+ * Merge two option objects into a new one.
+ * Core utility used in both instantiation and inheritance.
+ */
+export function mergeOptions (
+  parent: Object,
+  child: Object,
+  vm?: Component
+): Object {
+  //...
+  normalizeProps(child, vm)
+  normalizeInject(child, vm)
+  normalizeDirectives(child)
+  const extendsFrom = child.extends
+  if (extendsFrom) {//1、递归把extends合并到parent上
+    parent = mergeOptions(parent, extendsFrom, vm)
+  }
+  if (child.mixins) {//2、递归把mixins合并到parent上
+    for (let i = 0, l = child.mixins.length; i &lt; l; i++) {
+      parent = mergeOptions(parent, child.mixins[i], vm)
+    }
+  }
+  const options = {}
+  let key
+  for (key in parent) {//3、遍历parent，调用mergeField
+    mergeField(key)
+  }
+  for (key in child) {//4、遍历child，如果key不在parent的自身属性上，调用mergefield
+    if (!hasOwn(parent, key)) {
+      mergeField(key)
+    }
+  }
+  function mergeField (key) {
+    const strat = strats[key] || defaultStrat
+    options[key] = strat(parent[key], child[key], vm, key)
+  }
+  return options
+}
+</code></pre></div><p>mergeOptions 主要功能就是把 parent 和 child 这两个对象根据一些合并策略，合并成一个新对象并返回。比较核心的几步：</p> <ol><li>先递归把 extends 和 mixins 合并到 parent 上。</li> <li>遍历 parent，调用 mergeField。</li> <li>遍历 child，如果 key 不在 parent 的自身属性上，则调用 mergeField。</li></ol> <p>mergeField 函数合并策略</p> <p>mergeOptions 函数，一旦 parent 和 child都定义了相同的钩子函数，那么它们会把 2 个钩子函数合并成一个数组。</p> <h4 id="组件场景"><a href="#组件场景" class="header-anchor">#</a> 组件场景</h4> <p>组件的构造函数是通过 Vue.extend 继承自 Vue 的，先回顾一下这个过程，代码定义在 src/core/global-api/extend.js 中。</p> <div class="language- extra-class"><pre class="language-text"><code>Vue.extend = function (extendOptions: Object): Function {
+  // ...
+  Sub.options = mergeOptions(
+    Super.options,  //Vue.options
+    extendOptions  //前面定义的组件对象
+  )
+  //...
+  Sub.superOptions = Super.options
+  Sub.extendOptions = extendOptions
+  Sub.sealedOptions = extend({}, Sub.options)
+
+  // ...
+  return Sub
+}
+</code></pre></div><p>总结：</p> <blockquote><p>我们需要知道对于 options 的合并有 2 种方式，子组件初始化过程通过 initInternalComponent 方式要</p></blockquote> <h2 id="深入响应式原理"><a href="#深入响应式原理" class="header-anchor">#</a> 深入响应式原理</h2> <p>参考文章</p> <ul><li><a href="https://ustbhuangyi.github.io/vue-analysis/" target="_blank" rel="noopener noreferrer">黄轶vue源码文档<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></li></ul></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/vueDoc/route.html" class="prev">
+        路由
+      </a></span> <span class="next"><a href="/vueDoc/vueRouter.html">
+        router
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.df490d21.js" defer></script><script src="/assets/js/2.9235f093.js" defer></script><script src="/assets/js/28.5b4073a9.js" defer></script>
+  </body>
+</html>

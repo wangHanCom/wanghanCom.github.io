@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>webpack全局引入的问题 | 汪涵的博客</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    <link>
+    <meta name="description" content="">
+    <link rel="preload" href="/assets/css/0.styles.98136e72.css" as="style"><link rel="preload" href="/assets/js/app.df490d21.js" as="script"><link rel="preload" href="/assets/js/2.9235f093.js" as="script"><link rel="preload" href="/assets/js/31.92fc7f70.js" as="script"><link rel="prefetch" href="/assets/js/10.92f448a7.js"><link rel="prefetch" href="/assets/js/11.d81451ab.js"><link rel="prefetch" href="/assets/js/12.fe657e2d.js"><link rel="prefetch" href="/assets/js/13.673f55af.js"><link rel="prefetch" href="/assets/js/14.33419792.js"><link rel="prefetch" href="/assets/js/15.ab408685.js"><link rel="prefetch" href="/assets/js/16.41231623.js"><link rel="prefetch" href="/assets/js/17.f98cb10c.js"><link rel="prefetch" href="/assets/js/18.dc28497a.js"><link rel="prefetch" href="/assets/js/19.3bd23e42.js"><link rel="prefetch" href="/assets/js/20.48e0bcc4.js"><link rel="prefetch" href="/assets/js/21.4ca137be.js"><link rel="prefetch" href="/assets/js/22.fe35d04c.js"><link rel="prefetch" href="/assets/js/23.e2151993.js"><link rel="prefetch" href="/assets/js/24.42cdd1be.js"><link rel="prefetch" href="/assets/js/25.2ef590fe.js"><link rel="prefetch" href="/assets/js/26.88fd7535.js"><link rel="prefetch" href="/assets/js/27.aefa961a.js"><link rel="prefetch" href="/assets/js/28.5b4073a9.js"><link rel="prefetch" href="/assets/js/29.4c27b4b2.js"><link rel="prefetch" href="/assets/js/3.74014b60.js"><link rel="prefetch" href="/assets/js/30.f97becd7.js"><link rel="prefetch" href="/assets/js/32.d7c4f275.js"><link rel="prefetch" href="/assets/js/33.8d2027ca.js"><link rel="prefetch" href="/assets/js/34.adb9aee5.js"><link rel="prefetch" href="/assets/js/35.34cb4c23.js"><link rel="prefetch" href="/assets/js/4.ddf5fb83.js"><link rel="prefetch" href="/assets/js/5.2f6ceb2d.js"><link rel="prefetch" href="/assets/js/6.acebe267.js"><link rel="prefetch" href="/assets/js/7.4f5a488b.js"><link rel="prefetch" href="/assets/js/8.d3b85309.js"><link rel="prefetch" href="/assets/js/9.395837cf.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.98136e72.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><!----> <span class="site-name">汪涵的博客</span></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <!----></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><!---->  <ul class="sidebar-links"><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>js</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>计算机网络</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading"><span>Vue</span> <span class="arrow right"></span></p> <!----></section></li><li><section class="sidebar-group collapsable depth-0"><p class="sidebar-heading open"><span>webpack</span> <span class="arrow down"></span></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/webpack/devServer.html" class="sidebar-link">devServer</a></li><li><a href="/webpack/import.html" aria-current="page" class="active sidebar-link">webpack全局引入的问题</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/webpack/import.html#方法一：jq暴露为-window" class="sidebar-link">方法一：jq暴露为 window. $</a></li></ul></li><li><a href="/webpack/loader.html" class="sidebar-link">Loader</a></li><li><a href="/webpack/package.html" class="sidebar-link">webpack 基础</a></li><li><a href="/webpack/splitCode.html" class="sidebar-link">代码分割</a></li><li><a href="/webpack/project.html" class="sidebar-link">工程化</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="webpack全局引入的问题"><a href="#webpack全局引入的问题" class="header-anchor">#</a> webpack全局引入的问题</h1> <p>现在项目中安装jq</p> <div class="language- extra-class"><pre class="language-text"><code>yarn add jquery
+</code></pre></div><h2 id="方法一：jq暴露为-window"><a href="#方法一：jq暴露为-window" class="header-anchor">#</a> 方法一：jq暴露为 window. $</h2> <p>正常用法</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//在js中</span>
+<span class="token keyword">import</span> $ <span class="token keyword">from</span> <span class="token string">'jquery'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>$<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//可以打印出来</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>$<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//undefined</span>
+</code></pre></div><p>解决：
+通过expose-loader 暴露全局的loader</p> <div class="language- extra-class"><pre class="language-text"><code>//安装
+yarn add jquery
+yarn add expose-loader
+</code></pre></div><p>用法：
+在js中直接写（内联的loader）</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//expose-loader暴露全局的loader </span>
+<span class="token keyword">import</span> $ <span class="token keyword">from</span> <span class="token string">'expose-loader?$!jquery'</span><span class="token punctuation">;</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>window<span class="token punctuation">.</span>$<span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment">//正常打印</span>
+</code></pre></div><p>配置文件处理
+webpack v1 用法</p> <div class="language- extra-class"><pre class="language-text"><code>module:{
+    rules:[//匹配引入jq
+    {
+        test:require.resolve('jquery'),
+        use:'expose-loader?$'
+    },
+    ]
+}
+</code></pre></div><p>js中使用</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> $ <span class="token keyword">from</span> <span class="token string">'jquery'</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>windows<span class="token punctuation">.</span>$<span class="token punctuation">)</span> <span class="token comment">//正常输出</span>
+</code></pre></div><p>webpack v2 用法</p> <div class="language- extra-class"><pre class="language-text"><code>module: {
+  rules: [{
+    test: require.resolve('jquery'),
+    use: [{
+      loader: 'expose-loader',
+      options: '$'
+    }]
+  }]
+}
+</code></pre></div><p>除了暴露为 window. $ 之外，假设你还想把它暴露为 window.jQuery。 对于多个暴露，你可以在 loader 字符串中使用 !：</p> <div class="language-js extra-class"><pre class="language-js"><code>module<span class="token operator">:</span> <span class="token punctuation">{</span>
+  loaders<span class="token operator">:</span> <span class="token punctuation">[</span>
+    <span class="token punctuation">{</span> test<span class="token operator">:</span> require<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">&quot;jquery&quot;</span><span class="token punctuation">)</span><span class="token punctuation">,</span> loader<span class="token operator">:</span> <span class="token string">&quot;expose-loader?$!expose-loader?jQuery&quot;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><div class="language-js extra-class"><pre class="language-js"><code>module<span class="token operator">:</span> <span class="token punctuation">{</span>
+  rules<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+          test<span class="token operator">:</span> require<span class="token punctuation">.</span><span class="token function">resolve</span><span class="token punctuation">(</span><span class="token string">'jquery'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+          use<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">{</span>
+              loader<span class="token operator">:</span> <span class="token string">'expose-loader'</span><span class="token punctuation">,</span>
+              options<span class="token operator">:</span> <span class="token string">'jQuery'</span>
+          <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">{</span>
+              loader<span class="token operator">:</span> <span class="token string">'expose-loader'</span><span class="token punctuation">,</span>
+              options<span class="token operator">:</span> <span class="token string">'$'</span>
+          <span class="token punctuation">}</span><span class="token punctuation">]</span>
+      <span class="token punctuation">}</span><span class="token punctuation">]</span>
+<span class="token punctuation">}</span>
+</code></pre></div><p>方法二：
+在每个模块引入
+此种方式通过  window.$取不到</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">let</span> webpack<span class="token operator">=</span><span class="token function">require</span><span class="token punctuation">(</span><span class="token string">'webpack'</span><span class="token punctuation">)</span>
+<span class="token operator">...</span>
+plugins：<span class="token punctuation">[</span>
+    <span class="token keyword">new</span> <span class="token class-name">ProvidePlugin</span><span class="token punctuation">(</span><span class="token punctuation">{</span><span class="token comment">//webpack的插件  在每个模块引入$</span>
+         $<span class="token operator">:</span><span class="token string">'jquery'</span>      
+    <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">]</span>
+</code></pre></div><p>js中使用</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//直接获取</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>$<span class="token punctuation">)</span> <span class="token comment">//正常输出</span>
+console<span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span>windows<span class="token punctuation">.</span>$<span class="token punctuation">)</span> <span class="token comment">//仅在每个模块引入，没有暴露在全局</span>
+</code></pre></div><p>方法三
+引入CDN不不打包模块中的</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token comment">//index.js</span>
+<span class="token operator">&lt;</span>script src<span class="token operator">=</span><span class="token string">&quot;https://cdn.bootcss.com/jquery/3.3.1/jquery.js&quot;</span><span class="token operator">&gt;</span>
+</code></pre></div><p>在js中使用</p> <div class="language-js extra-class"><pre class="language-js"><code><span class="token keyword">import</span> $ <span class="token keyword">from</span> <span class="token string">'jquery'</span>
+</code></pre></div><p>不打包当前的jquery</p> <div class="language- extra-class"><pre class="language-text"><code>externals:{
+    jauery:&quot;$&quot;
+}
+</code></pre></div></div> <footer class="page-edit"><!----> <!----></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/webpack/devServer.html" class="prev">
+        devServer
+      </a></span> <span class="next"><a href="/webpack/loader.html">
+        Loader
+      </a>
+      →
+    </span></p></div> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.df490d21.js" defer></script><script src="/assets/js/2.9235f093.js" defer></script><script src="/assets/js/31.92fc7f70.js" defer></script>
+  </body>
+</html>
